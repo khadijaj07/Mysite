@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formualire des Commandes</title>
+  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+
+    </style>
+</head>
+<body>
+  
+    <div class="">
+        <div class="form-wrapper">
+            <h1 class="font-weight-bold ">Commande</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn ">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+    <h2>les commandes</h2>
+    <div class="container">
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Total</th>
+                    <th>Description</th> 
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for commande in commandes %}
+                <tr>
+                  
+                    <td>{{ commande.totalCde }}</td>
+                    <td>{{ commande.description }}</td>
+                    <td>{{ commande.total }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<title>
+{% block title %} {% endblock %}
+</title>
+<link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/base.css'%}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% block styles %} {% endblock %}
+</head>
+<body style=" background: radial-gradient(circle, rgba(200,224,228,0.6386204139859069) 0%, rgba(196,252,255,0.3725139714088761) 100%);">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(90deg, rgba(221,221,233,1) 0%, rgba(170,170,207,1) 35%, rgba(38,218,255,1) 100%);">
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+  </svg>
+  <a class="navbar-brand" href="#">commerce electronique</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'index' %}">Catalogue <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'Fournisseur' %}">Fournisseur <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://127.0.0.1:8000/admin/login/?next=/admin/">administration <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'majProduit' %}">Formulaire<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'vitrine' %}">vitrine<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'acceuil' %}">Accuiel<span class="sr-only">(current)</span></a>
+      </li>
+      
+    
+      <!-- Add more navbar items here -->
+  </ul>
+  <ul class="navbar-nav ml-auto">
+
+      {% if user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'commande' %}">Panier<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+      <a class="nav-link" href="#">{{user}}</a>
+      </li>
+      <li class="nav-item active">
+      <a class="nav-link" href="{%  url 'logout' %}">Déconnexion</a>
+      </li>
+
+    {% else %}
+      <li class="nav-item active">
+    <a class="nav-link" href="{% url 'login' %}">Connexion</a>
+    </li>
+    <li class="nav-item active">
+    <a class="nav-link" href="{% url 'register' %}">Inscription</a>
+      </li>
+    {% endif %}
+</ul>
+
+    <!-- You can add more elements here like search bar, login button, etc. -->
+  </div>
+</nav>
+
+{% block content %}
+<!-- Your main content goes here -->
+{% endblock %}
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+

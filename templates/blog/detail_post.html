@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            
+              background: #76b39d;
+          
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color:  #c24b39;
+        }
+
+        p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color:  #c24b39;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ posts.title }}</h1>
+        <p><strong>Author:</strong> {{ posts.author }}</p>
+        <p><strong>Created On:</strong> {{ posts.created_on }}</p>
+        <p><strong>Status:</strong> {% if posts.status == 0 %} Draft {% else %} Publish {% endif %}</p>
+        <p>{{ posts.content }}</p>
+        {% if posts.image %}
+            <img src="{{ posts.image.url }}" alt="{{ posts.title }}">
+        {% endif %}
+        <a href="{% url 'modifier_post' pk=posts.pk %}">Modifier</a>
+        <a href="{% url 'supprimerpost' pk=posts.pk %}">Supprimer</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Posts</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .navbar {
+        background-color: #f3f6c8; /* Couleur de fond */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transition pour un effet lisse */
+        padding: 15px 0; /* Espacement intérieur */
+    }
+    
+    .navbar-brand {
+        font-size: 1.8rem; /* Taille de police */
+        color: #333; /* Couleur du texte */
+        transition: color 0.3s ease; /* Transition pour un effet lisse */
+    }
+    
+    .navbar-brand:hover {
+        color: #007bff; /* Couleur du texte au survol */
+    }
+    
+    .navbar-nav .nav-link {
+        font-size: 1.1rem; /* Taille de police */
+        color: #555; /* Couleur du texte */
+        transition: color 0.3s ease; /* Transition pour un effet lisse */
+        margin-right: 15px; /* Marge entre les éléments de la navigation */
+    }
+    
+    .navbar-nav .nav-link:hover {
+        color: #007bff; /* Couleur du texte au survol */
+    }
+    
+    .navbar-toggler {
+        border-color: #007bff; /* Couleur de la bordure */
+    }
+    
+    .navbar-toggler-icon {
+        background-color: #007bff; /* Couleur de l'icône */
+    }
+    
+    .navbar-toggler:focus,
+    .navbar-toggler:active {
+        outline: none; /* Supprimer le contour */
+    }
+    
+        .post {
+            margin-bottom: 30px;
+            width: 400px;
+          
+            margin-left: auto;
+            margin-right: auto;
+        
+        }
+        .card {
+            transition: transform 0.3s ease;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            background:#f9f8eb;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .card-text {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+        .card-text img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body style="background:#f6f6e9;">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Your Brand</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+          
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'creer_post' %}" class="btn  mb-3" style="background:#f56262;">New Post</a>
+                </li>
+
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'acceuil' %}">Accuiel<span class="sr-only"></span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br><br>
+    <div class="container">
+    
+        
+        <!-- Remove the "row" class to display posts stacked -->
+        {% for post in posts %}
+            <div class="col-12 post">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'detail_post' post.pk %}">{{ post.title }}</a></h5>
+                        <p class="card-text">{{ post.content | truncatewords:20 }}</p>
+                        <p class="card-text">Author: {{ post.author }}</p>
+                        <p class="card-text">Updated On: {{ post.updated_on }}</p>
+                        <p class="card-text">Created On: {{ post.created_on }}</p>
+                        <p class="card-text">Status: {{ post.status }}</p>
+                        {% if post.image %}
+                            <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.title }}">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col">
+                <div class="alert alert-info">No posts found.</div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Include Bootstrap JS (optional, if you need Bootstrap JavaScript features) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

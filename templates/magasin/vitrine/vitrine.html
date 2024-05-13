@@ -1,0 +1,36 @@
+{% extends 'magasin/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<form method='POST' class="post-form">
+{% csrf_token %}
+<div class="container-fluid h-100 d-flex align-items-center justify-content-center">
+<div style="overflow:scroll; border:#000000 1px solid;">
+
+  <div class="overflow-auto border p-3">
+<table>
+ <tr>
+
+{% for article in list %}
+
+<td class="p-3">
+    <img src='/media/{{ article.img }}' class="rounded float-start" height="200px" width="200px" alt="">
+ 
+    <figcaption class="figure-caption mt-2">
+      {{article.libelle}}
+    </figcaption>
+
+    <p class="mb-1"> {{article.img}} </p>
+    <p class="mb-0"> {{article.prix}} DT. </p>
+</td>
+
+{% endfor %}
+
+ </tr>
+ </table>
+</div>
+</div>
+</form>
+</div>
+{% endblock %}

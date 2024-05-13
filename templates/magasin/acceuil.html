@@ -1,0 +1,96 @@
+<!DOCTYPE html">
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Création d'un design étape par étape - Etape n°1 : Le code xhtml</title>
+<style>
+/* Reset des styles par défaut */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Styles pour le body */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(45deg, #4f8a8b, #85c7d5);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Styles pour le conteneur principal */
+#conteneur {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles pour le header */
+#header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#header h1 {
+  font-size: 32px;
+  color: #333;
+}
+
+/* Styles pour le menu de navigation */
+#menu {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#menu li {
+  display: inline;
+  margin-right: 20px;
+}
+
+#menu li a {
+  text-decoration: none;
+  color:  #f6b132;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+#menu li a:hover {
+  color:#37b7b5;
+}
+
+/* Styles pour le contenu */
+#contenu {
+  padding: 20px;
+  border-radius: 5px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="conteneur">
+  <div id="header">
+    <h1>Notre Application</h1>
+  </div>
+  
+  <div id="contenu">
+    <ul id="menu">
+      <li><a href="{% url 'index' %}">Application n°1 : Magasin</a></li>
+      <li><a href="/blog">Application n°2 : Blog</a></li>
+      <li><a href="#">Application n°3</a></li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
